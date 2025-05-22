@@ -23,8 +23,9 @@ import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 import siteMetadata from './data/siteMetadata'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { sortPosts } from 'pliny/utils/contentlayer.js'
 import prettier from 'prettier'
+import { allCoreContentNotFuture } from '@/layouts/post'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -87,7 +88,7 @@ function createSearchIndex(allBlogs) {
   ) {
     writeFileSync(
       `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
-      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
+      JSON.stringify(allCoreContentNotFuture(sortPosts(allBlogs)))
     )
     console.log('Local search index generated...')
   }
@@ -99,16 +100,18 @@ export const Blog = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
+    description: { type: 'string', required: true },
     date: { type: 'date', required: true },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
     summary: { type: 'string' },
     images: { type: 'json' },
-    authors: { type: 'list', of: { type: 'string' } },
+    author: { type: 'string' },
     layout: { type: 'string' },
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
+    facebookPath: { type: 'string' },
   },
   computedFields: {
     ...computedFields,

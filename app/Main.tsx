@@ -10,20 +10,19 @@ export default function Home({ posts }) {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            Latest
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+        <div className="h-[240px] bg-[url('/static/images/header-bg.png')] bg-cover bg-center md:h-[400px] lg:h-[600px] dark:bg-[url('/static/images/header-bg-dark.png')]" />
+        <div className="space-y-2 pb-8 md:space-y-5">
+          <p className="m-2 text-lg leading-7 whitespace-pre-line text-gray-500 dark:text-gray-400">
             {siteMetadata.description}
           </p>
         </div>
+
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
             return (
-              <li key={slug} className="py-12">
+              <li key={slug} className="py-8">
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
@@ -59,7 +58,7 @@ export default function Home({ posts }) {
                           className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read more: "${title}"`}
                         >
-                          Read more &rarr;
+                          Przejdź do artykułu &rarr;
                         </Link>
                       </div>
                     </div>
@@ -77,7 +76,7 @@ export default function Home({ posts }) {
             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="All posts"
           >
-            All Posts &rarr;
+            Artykuły &rarr;
           </Link>
         </div>
       )}
