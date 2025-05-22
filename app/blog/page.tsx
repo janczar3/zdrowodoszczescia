@@ -20,7 +20,9 @@ export default async function BlogPage(props: { searchParams: Promise<{ page: st
 
   return (
     <ListLayout
+      //@ts-ignore
       posts={posts}
+      //@ts-ignore
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
       title="Artykuły"

@@ -51,7 +51,9 @@ export default async function TagPage(props: { params: Promise<{ tag: string }> 
 
   return (
     <ListLayout
+      //@ts-ignore
       posts={filteredPosts}
+      //@ts-ignore
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
       title={title}

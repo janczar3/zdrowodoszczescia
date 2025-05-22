@@ -34,7 +34,9 @@ export default async function Page(props: { params: Promise<{ page: string }> })
 
   return (
     <ListLayout
+      //@ts-ignore
       posts={posts}
+      //@ts-ignore
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
       title="Artykuły"
